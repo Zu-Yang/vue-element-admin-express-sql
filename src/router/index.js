@@ -71,8 +71,15 @@ export const constantRoutes = [{
         name: 'TableEdit',
         component: () => import('@/views/table/tableEdit'),
         meta: {
-          title: 'Table编辑',
-          icon: 'table'
+          title: 'table 编辑',
+        }
+      },
+      {
+        path: 'tableExample',
+        name: 'TableExample',
+        component: () => import('@/views/table/tableExample'),
+        meta: {
+          title: 'table 综合范例',
         }
       },
       {
@@ -81,7 +88,6 @@ export const constantRoutes = [{
         component: () => import('@/views/tree/index'),
         meta: {
           title: 'Tree',
-          icon: 'tree'
         }
       }
     ]

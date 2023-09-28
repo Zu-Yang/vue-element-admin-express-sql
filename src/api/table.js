@@ -7,3 +7,10 @@ export function getList(params) {
     params
   })
 }
+export function update(data) {
+  return request({
+    url: '/vue-admin-template/table/update',
+    method: 'post',
+    data
+  })
+}

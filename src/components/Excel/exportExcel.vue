@@ -39,8 +39,7 @@
         </el-table-column>
         <el-table-column label="状态" width="115" align="center">
           <template slot-scope="scope">
-            <el-tag
-              :type="scope.row.status === 'published' && 'success' || scope.row.status === 'draft' && 'info' || scope.row.status === 'deleted' && 'danger'">
+            <el-tag :type="scope.row.status | status">
               {{ scope.row.status }}
             </el-tag>
           </template>
@@ -75,6 +74,16 @@ export default {
       bookName: "",
       bookType: "xlsx",
       bookTypeOption: ["xlsx", "xls", "csv", "txt"],
+    }
+  },
+  filters: {
+    status(status) {
+      const statusMap = {
+        published: 'success',
+        draft: 'info',
+        deleted: 'danger',
+      }
+      return statusMap[status]
     }
   },
   created() {

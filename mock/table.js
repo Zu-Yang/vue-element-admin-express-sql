@@ -11,8 +11,7 @@ const data = Mock.mock({
   }]
 })
 
-module.exports = [
-  {
+module.exports = [{
     url: '/vue-admin-template/table/list',
     type: 'get',
     response: config => {
@@ -23,6 +22,16 @@ module.exports = [
           total: items.length,
           items: items
         }
+      }
+    }
+  },
+  {
+    url: '/vue-admin-template/table/update',
+    type: 'post',
+    response: config => {
+      return {
+        code: 20000,
+        data: 'success'
       }
     }
   }
