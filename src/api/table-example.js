@@ -7,3 +7,17 @@ export function getOrders(params) {
     params
   })
 }
+export function updateOrders(data) {
+  return request({
+    url: '/vue-admin-template/table-example/update',
+    method: 'post',
+    data
+  })
+}
+export function deleteOrders(data) {
+  return request({
+    url: '/vue-admin-template/table-example/delete',
+    method: 'post',
+    data
+  })
+}

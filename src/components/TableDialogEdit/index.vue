@@ -104,9 +104,9 @@ export default {
       this.edit = true
     },
     confirmEdit() {
-      this.edit = false
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
+          this.edit = false
           const index = this.list.findIndex(item => item.id === this.form.id) // find index
           if (this.list[index].title === this.form.title) return // If the title has not been modified return
           update(this.form).then((res) => {
@@ -125,7 +125,6 @@ export default {
           return false;
         }
       });
-
     }
   }
 }

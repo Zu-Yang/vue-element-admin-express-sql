@@ -1,11 +1,11 @@
 <template>
   <div class="table-example">
     <!-- 搜索组件 -->
-    <filter-component />
+    <filter-component @get-order-list="getOrderList" />
     <!-- table组件 -->
-    <table-component />
+    <table-component :orders="orderList" @get-order-list="getOrderList" />
     <!-- 分页组件 -->
-    <pagination-component />
+    <pagination-component :total="orderTotal" @get-order-list="getOrderList" />
     <!-- 其他组件 -->
   </div>
 </template>
@@ -19,11 +19,19 @@ export default {
   name: "TableExample",
   components: { FilterComponent, TableComponent, PaginationComponent, },
   data() {
-    return {}
+    return {
+      orderList: [],
+      orderTotal: undefined
+    }
   },
   created() { },
   mounted() { },
-  methods: {}
+  methods: {
+    getOrderList({ list, total }) {
+      this.orderList = list
+      this.orderTotal = total
+    }
+  }
 }
 </script>
 

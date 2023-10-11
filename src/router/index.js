@@ -284,19 +284,36 @@ export const constantRoutes = [{
   {
     path: '/components',
     component: Layout,
-    redirect: '/components/components-1',
+    redirect: '/components/drag-transition',
     meta: {
       title: '组件',
       icon: 'component',
     },
-    // children: [{
-    //   path: '',
-    //   name: '',
-    //   component: () => import('@/views/components/components-1'),
-    //   meta: {
-    //     title: '组件1',
-    //   },
-    // }]
+    children: [{
+        path: 'drag-transition',
+        name: 'DragTransition',
+        component: () => import('@/views/components-demo/drag-example/drag-transition'),
+        meta: {
+          title: 'transition 拖拽',
+        },
+      },
+      {
+        path: 'drag-multiple-lists',
+        name: 'DragMultipleLists',
+        component: () => import('@/views/components-demo/drag-example/drag-multiple-lists'),
+        meta: {
+          title: 'lists 拖拽',
+        },
+      },
+      {
+        path: 'drag-table',
+        name: 'DragTable',
+        component: () => import('@/views/components-demo/drag-example/drag-table'),
+        meta: {
+          title: 'table 拖拽',
+        },
+      }
+    ]
   },
   {
     path: '/external-link',

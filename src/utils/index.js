@@ -8,7 +8,7 @@
  * @param {string} cFormat
  * @returns {string | null}
  */
-export function parseTime(time, cFormat) {
+function parseTime(time, cFormat) {
   if (arguments.length === 0 || !time) {
     return null
   }
@@ -58,7 +58,7 @@ export function parseTime(time, cFormat) {
  * @param {string} option
  * @returns {string}
  */
-export function formatTime(time, option) {
+function formatTime(time, option) {
   if (('' + time).length === 10) {
     time = parseInt(time) * 1000
   } else {
@@ -100,7 +100,7 @@ export function formatTime(time, option) {
  * @param {string} url
  * @returns {Object}
  */
-export function param2Obj(url) {
+function param2Obj(url) {
   const search = decodeURIComponent(url.split('?')[1]).replace(/\+/g, ' ')
   if (!search) {
     return {}
@@ -118,7 +118,7 @@ export function param2Obj(url) {
   return obj
 }
 
-export function debounce(func, wait, immediate) {
+function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result
 
   const later = function () {
@@ -151,4 +151,11 @@ export function debounce(func, wait, immediate) {
 
     return result
   }
+}
+
+module.exports = {
+  parseTime,
+  formatTime,
+  param2Obj,
+  debounce
 }
