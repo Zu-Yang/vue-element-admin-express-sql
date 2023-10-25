@@ -37,4 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 /* 外部引入 */
+.table-example {
+  padding: 20px;
+}
 </style>
