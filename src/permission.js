@@ -10,7 +10,7 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login'] // no redirect whitelist
 
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
 
@@ -26,15 +26,20 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      // 确定用户是否已通过getInfo获得其权限角色
+      const hasRoles = store.getters.roles && store.getters.roles.length > 0
+      if (hasRoles) {
         next()
       } else {
         try {
           // get user info
-          await store.dispatch('user/getInfo')
-
-          next()
+          const { roles } = await store.dispatch('user/getInfo')
+          // 生成路由表
+          const accessibleRoutes = await store.dispatch('permission/generateRoutes', roles)
+          // 动态添加可访问路由
+          router.addRoutes(accessibleRoutes)
+          // hack方法 确保addRoutes已完成 , /设置replace:true，这样导航就不会留下历史记录
+          next({ ...to, replace: true })
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')
