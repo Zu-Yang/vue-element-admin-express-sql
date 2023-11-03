@@ -21,24 +21,25 @@ const roles = [
     key: 'visitor',
     name: 'visitor',
     description: 'Just a visitor. Can only see the home page and the document page',
-    routes: [{
-      path: '',
-      redirect: 'dashboard',
-      children: [
-        {
-          path: 'dashboard',
-          name: 'Dashboard',
-          meta: { title: 'dashboard', icon: 'dashboard' }
-        }
-      ]
-    }]
+    // routes: [{
+    //   path: '',
+    //   redirect: 'dashboard',
+    //   children: [
+    //     {
+    //       path: 'dashboard',
+    //       name: 'Dashboard',
+    //       meta: { title: 'dashboard', icon: 'dashboard' }
+    //     }
+    //   ]
+    // }],
+    routes: routes.filter(i => i.path === '/')// 返回首页
   }
 ]
 
 module.exports = [
   // mock get all routes form server
   {
-    url: '/vue-element-admin/routes',
+    url: '/vue-admin-template/routes',
     type: 'get',
     response: _ => {
       return {
@@ -50,7 +51,7 @@ module.exports = [
 
   // mock get all roles form server
   {
-    url: '/vue-element-admin/roles',
+    url: '/vue-admin-template/roles',
     type: 'get',
     response: _ => {
       return {
@@ -62,7 +63,7 @@ module.exports = [
 
   // add role
   {
-    url: '/vue-element-admin/role',
+    url: '/vue-admin-template/role',
     type: 'post',
     response: {
       code: 20000,
@@ -74,7 +75,7 @@ module.exports = [
 
   // update role
   {
-    url: '/vue-element-admin/role/[A-Za-z0-9]',
+    url: '/vue-admin-template/role/[A-Za-z0-9]',
     type: 'put',
     response: {
       code: 20000,
@@ -86,7 +87,7 @@ module.exports = [
 
   // delete role
   {
-    url: '/vue-element-admin/role/[A-Za-z0-9]',
+    url: '/vue-admin-template/role/[A-Za-z0-9]',
     type: 'delete',
     response: {
       code: 20000,
