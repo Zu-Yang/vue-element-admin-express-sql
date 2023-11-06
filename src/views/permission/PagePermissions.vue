@@ -1,5 +1,10 @@
 <template>
   <div class="permission-page">
+    <el-tag>
+      修改权限你会看到menu菜单的变化:
+    </el-tag>
+    <br>
+    <br>
     <el-radio-group v-model="roles">
       <el-radio-button label="editor" />
       <el-radio-button label="admin" />
@@ -27,4 +32,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.permission-page {
+  padding: 20px;
+}
+</style>

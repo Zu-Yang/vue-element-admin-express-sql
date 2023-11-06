@@ -37,7 +37,7 @@
         </el-form-item>
         <el-form-item label="Menus">
           <el-tree ref="tree" :check-strictly="checkStrictly" :data="routesData" :props="defaultProps" show-checkbox
-            node-key="path" class="permission-tree" />
+            default-expand-all node-key="path" class="permission-tree" />
         </el-form-item>
       </el-form>
       <div style="text-align:right;">
@@ -81,15 +81,13 @@ export default {
     }
   },
   created() {
-    console.log(11111);
     // Mock: get all routes and roles list from server
     this.getRoutes()
-    // this.getRoles()
+    this.getRoles()
   },
   methods: {
     async getRoutes() {
       const res = await getRoutes();
-      console.log(res);
       this.serviceRoutes = res.data
       this.routes = this.generateRoutes(res.data)
     },
@@ -115,7 +113,6 @@ export default {
         const data = {
           path: path.resolve(basePath, route.path),
           title: route.meta && route.meta.title
-
         }
 
         // recursive child routes

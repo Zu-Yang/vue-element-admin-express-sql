@@ -1,14 +1,16 @@
 // Just a mock data
 
+/* 踩坑!!!, 路由表中的 component一定不能用 ()=>import("@/views/xxx/xxx'") 按需加载 会报错 Uncaught (in promise) Error: Network Error ,返回的不是一个路径是一个promise 对象,也不能使用别名@ */
+
 const constantRoutes = [
   {
     path: '/login',
-    component: () => import('@/views/login/index'),
+    component: 'views/login/index',
     hidden: true
   },
   {
     path: '/404',
-    component: () => import('@/views/404'),
+    component: 'views/404',
     hidden: true
   },
   {
@@ -18,7 +20,7 @@ const constantRoutes = [
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
+      component: 'views/dashboard/index',
       meta: {
         title: '首页',
         icon: 'dashboard'
@@ -37,7 +39,7 @@ const constantRoutes = [
     children: [{
       path: 'tableEdit',
       name: 'TableEdit',
-      component: () => import('@/views/table/tableEdit'),
+      component: 'views/table/tableEdit',
       meta: {
         title: 'table 编辑',
       }
@@ -45,7 +47,7 @@ const constantRoutes = [
     {
       path: 'tableExample',
       name: 'TableExample',
-      component: () => import('@/views/table/tableExample'),
+      component: 'views/table/tableExample',
       meta: {
         title: 'table 综合范例',
       }
@@ -58,7 +60,7 @@ const constantRoutes = [
     children: [{
       path: 'index',
       name: 'Form',
-      component: () => import('@/views/form/index'),
+      component: 'views/form/index',
       meta: {
         title: '表单相关',
         icon: 'form'
@@ -76,14 +78,14 @@ const constantRoutes = [
     },
     children: [{
       path: 'menu1',
-      component: () => import('@/views/nested/menu1/index'), // Parent router-view
+      component: 'views/nested/menu1/index', // Parent router-view
       name: 'Menu1',
       meta: {
         title: 'Menu1'
       },
       children: [{
         path: 'menu1-1',
-        component: () => import('@/views/nested/menu1/menu1-1'),
+        component: 'views/nested/menu1/menu1-1',
         name: 'Menu1-1',
         meta: {
           title: 'Menu1-1'
@@ -91,14 +93,14 @@ const constantRoutes = [
       },
       {
         path: 'menu1-2',
-        component: () => import('@/views/nested/menu1/menu1-2'),
+        component: 'views/nested/menu1/menu1-2',
         name: 'Menu1-2',
         meta: {
           title: 'Menu1-2'
         },
         children: [{
           path: 'menu1-2-1',
-          component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+          component: 'views/nested/menu1/menu1-2/menu1-2-1',
           name: 'Menu1-2-1',
           meta: {
             title: 'Menu1-2-1'
@@ -106,7 +108,7 @@ const constantRoutes = [
         },
         {
           path: 'menu1-2-2',
-          component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+          component: 'views/nested/menu1/menu1-2/menu1-2-2',
           name: 'Menu1-2-2',
           meta: {
             title: 'Menu1-2-2'
@@ -116,7 +118,7 @@ const constantRoutes = [
       },
       {
         path: 'menu1-3',
-        component: () => import('@/views/nested/menu1/menu1-3'),
+        component: 'views/nested/menu1/menu1-3',
         name: 'Menu1-3',
         meta: {
           title: 'Menu1-3'
@@ -126,7 +128,7 @@ const constantRoutes = [
     },
     {
       path: 'menu2',
-      component: () => import('@/views/nested/menu2/index'),
+      component: 'views/nested/menu2/index',
       name: 'Menu2',
       meta: {
         title: 'menu2'
@@ -146,7 +148,7 @@ const constantRoutes = [
     children: [{
       path: 'barAnimationDelay',
       name: 'BarAnimationDelay',
-      component: () => import('@/views/charts/barAnimationDelay'),
+      component: 'views/charts/barAnimationDelay',
       meta: {
         title: '条形图动画延迟',
       }
@@ -154,7 +156,7 @@ const constantRoutes = [
     {
       path: 'dynamicData',
       name: 'DynamicData',
-      component: () => import('@/views/charts/dynamicData'),
+      component: 'views/charts/dynamicData',
       meta: {
         title: '动态数据',
       }
@@ -162,7 +164,7 @@ const constantRoutes = [
     {
       path: 'keyframeAnimation',
       name: 'KeyframeAnimation',
-      component: () => import('@/views/charts/keyframeAnimation'),
+      component: 'views/charts/keyframeAnimation',
       meta: {
         title: '关键帧描边动画',
       }
@@ -181,7 +183,7 @@ const constantRoutes = [
     children: [{
       path: 'wangEditor',
       name: 'WangEditor',
-      component: () => import('@/views/editor/wangEditor'),
+      component: 'views/editor/wangEditor',
       meta: {
         title: 'wangEditor',
       },
@@ -189,7 +191,7 @@ const constantRoutes = [
     {
       path: 'jsonEditor',
       name: 'JsonEditor',
-      component: () => import('@/views/editor/jsonEditor'),
+      component: 'views/editor/jsonEditor',
       meta: {
         title: 'jsonEditor',
       },
@@ -197,7 +199,7 @@ const constantRoutes = [
     {
       path: 'vueCodemirror',
       name: 'VueCodemirror',
-      component: () => import('@/views/editor/vueCodemirror'),
+      component: 'views/editor/vueCodemirror',
       meta: {
         title: 'vueCodemirror',
       },
@@ -215,7 +217,7 @@ const constantRoutes = [
     children: [{
       path: 'exportExcel',
       name: 'ExportExcel',
-      component: () => import('@/views/excel/exportExcel'),
+      component: 'views/excel/exportExcel',
       meta: {
         title: '导出 Excel',
       },
@@ -223,7 +225,7 @@ const constantRoutes = [
     {
       path: 'uploadExcel',
       name: 'UploadExcel',
-      component: () => import('@/views/excel/uploadExcel'),
+      component: 'views/excel/uploadExcel',
       meta: {
         title: '上传 Excel',
       },
@@ -231,7 +233,7 @@ const constantRoutes = [
     {
       path: 'excelToJSON',
       name: 'ExcelToJSON',
-      component: () => import('@/views/excel/excelToJSON'),
+      component: 'views/excel/excelToJSON',
       meta: {
         title: 'Excel to JSON',
       },
@@ -249,7 +251,7 @@ const constantRoutes = [
     children: [{
       path: 'drag-transition',
       name: 'DragTransition',
-      component: () => import('@/views/components-demo/drag-example/drag-transition'),
+      component: 'views/components-demo/drag-example/drag-transition',
       meta: {
         title: 'transition 拖拽',
       },
@@ -257,7 +259,7 @@ const constantRoutes = [
     {
       path: 'drag-multiple-lists',
       name: 'DragMultipleLists',
-      component: () => import('@/views/components-demo/drag-example/drag-multiple-lists'),
+      component: 'views/components-demo/drag-example/drag-multiple-lists',
       meta: {
         title: 'lists 拖拽',
       },
@@ -265,7 +267,7 @@ const constantRoutes = [
     {
       path: 'drag-table',
       name: 'DragTable',
-      component: () => import('@/views/components-demo/drag-example/drag-table'),
+      component: 'views/components-demo/drag-example/drag-table',
       meta: {
         title: 'table 拖拽',
       },
@@ -300,7 +302,7 @@ const asyncRoutes = [
     children: [
       {
         path: 'page-permissions',
-        component: () => import('@/views/permission/PagePermissions'),
+        component: 'views/permission/PagePermissions',
         name: 'PagePermissions',
         meta: {
           title: '页面权限测试',
@@ -309,7 +311,7 @@ const asyncRoutes = [
       },
       {
         path: 'role-permissions',
-        component: () => import('@/views/permission/RolePermission'),
+        component: 'views/permission/RolePermission',
         name: 'RolePermission',
         meta: {
           title: '角色权限',
@@ -318,7 +320,7 @@ const asyncRoutes = [
       },
       {
         path: 'editor-page',
-        component: () => import('@/views/permission/EditorPpage'),
+        component: 'views/permission/EditorPpage',
         name: 'EditorPpage',
         meta: {
           title: 'editor-page',
@@ -327,7 +329,7 @@ const asyncRoutes = [
       },
       {
         path: 'admin-page',
-        component: () => import('@/views/permission/AdminPage'),
+        component: 'views/permission/AdminPage',
         name: 'AdminPage',
         meta: {
           title: 'admin-page',
@@ -336,7 +338,7 @@ const asyncRoutes = [
       },
       {
         path: 'no-roles',
-        component: () => import('@/views/permission/NoRoles'),
+        component: 'views/permission/NoRoles',
         name: 'NoRoles',
         meta: {
           title: 'no-roles',

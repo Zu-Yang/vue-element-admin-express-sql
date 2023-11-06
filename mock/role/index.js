@@ -4,35 +4,56 @@ const { asyncRoutes, constantRoutes } = require('./routes.js')
 
 const routes = deepClone([...constantRoutes, ...asyncRoutes])
 
+/**
+ * Use meta.role to determine if the current user has permission
+ * @param roles
+ * @param route
+ */
+const hasPermission = function (roles, route) {
+  if (route.meta && route.meta.roles) {
+    return roles.some(role => route.meta.roles.includes(role))
+  }
+  return true
+}
+
+/**
+ * Filter asynchronous routing tables by recursion
+ * @param routes asyncRoutes
+ * @param roles
+ */
+const filterAsyncRoutes = function (roles, routes) {
+  var temp = []
+  routes.forEach(route => {
+    var copyRoute = Object.assign({}, route)
+    if (hasPermission(roles, copyRoute)) {
+      if (copyRoute.children) {
+        copyRoute.children = filterAsyncRoutes(roles, copyRoute.children)
+      }
+      temp.push(copyRoute)
+    }
+  });
+  return temp
+}
+
+
 const roles = [
   {
     key: 'admin',
     name: 'admin',
     description: 'Super Administrator. Have access to view all pages.',
-    routes: routes
+    routes: filterAsyncRoutes(['admin'], routes)
   },
   {
     key: 'editor',
     name: 'editor',
     description: 'Normal Editor. Can see all pages except permission page',
-    routes: routes.filter(i => i.path !== '/permission')// just a mock
+    routes: filterAsyncRoutes(['editor'], routes)
   },
   {
     key: 'visitor',
     name: 'visitor',
     description: 'Just a visitor. Can only see the home page and the document page',
-    // routes: [{
-    //   path: '',
-    //   redirect: 'dashboard',
-    //   children: [
-    //     {
-    //       path: 'dashboard',
-    //       name: 'Dashboard',
-    //       meta: { title: 'dashboard', icon: 'dashboard' }
-    //     }
-    //   ]
-    // }],
-    routes: routes.filter(i => i.path === '/')// 返回首页
+    routes: filterAsyncRoutes(['visitor'], routes)
   }
 ]
 
