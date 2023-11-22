@@ -14,7 +14,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+git clone https://github.com/Zu-Yang/vue-element-admin-express-sql.git
 
 # 进入项目目录
 cd vue-admin-template
@@ -34,7 +34,7 @@ npm run dev
 ## Server
 
 ### 创建并且配置好数据库后
-[数据库截图](./server/mySql/img-sql.png)
+![数据库截图](./server/mySql/img-sql.png)
 
 ### 找到 server/mySql/db.js 目录，修改数据库配置
 
