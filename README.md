@@ -1,7 +1,7 @@
 # vue-element-admin-express-sql
 
-> this is a vue+element+admin+express+sql project
-> 当前仅使用 express+sql 实现了登录注册功能 其余数据还是通过 mockjs 模拟获取
+> this is a vue+element+admin+express+sql project。
+> 当前仅使用 express+sql 实现了登录注册功能 其余数据还是通过 mockjs 模拟获取。
 
 ## 模板使用 - vue-element-admin
 
