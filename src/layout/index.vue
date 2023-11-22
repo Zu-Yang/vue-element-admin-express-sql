@@ -1,11 +1,14 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
+    <!-- 菜单栏 -->
     <sidebar class="sidebar-container" />
     <div class="main-container">
+      <!-- 导航栏 -->
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar />
       </div>
+      <!-- 主体内容 -->
       <app-main />
     </div>
   </div>
@@ -22,7 +25,7 @@ export default {
     Sidebar,
     AppMain
   },
-  mixins: [ResizeMixin],
+  mixins: [ResizeMixin], // 监听页面布局
   computed: {
     sidebar() {
       return this.$store.state.app.sidebar

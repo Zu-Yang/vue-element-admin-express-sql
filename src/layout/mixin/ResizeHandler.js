@@ -12,6 +12,7 @@ export default {
     }
   },
   beforeMount() {
+    /* resize监听浏览器窗口大小 */
     window.addEventListener('resize', this.$_resizeHandler)
   },
   beforeDestroy() {
@@ -25,10 +26,10 @@ export default {
     }
   },
   methods: {
-    // use $_ for mixins properties
+    // use $_ for mixins properties 解释:对mixins属性使用$_
     // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
     $_isMobile() {
-      const rect = body.getBoundingClientRect()
+      const rect = body.getBoundingClientRect() //方法返回元素的大小及其相对于窗口的位置。
       return rect.width - 1 < WIDTH
     },
     $_resizeHandler() {

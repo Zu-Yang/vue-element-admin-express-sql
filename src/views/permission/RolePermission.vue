@@ -97,6 +97,7 @@ export default {
     },
 
     // Reshape the routes structure so that it looks the same as the sidebar
+    /* 此方法的作用就是返回路由的绝对路径 path 和 title  */
     generateRoutes(routes, basePath = '/') {
       const res = []
 
@@ -105,24 +106,24 @@ export default {
         if (route.hidden) { continue }
 
         const onlyOneShowingChild = this.onlyOneShowingChild(route.children, route)
-
+        
         if (route.children && onlyOneShowingChild && !route.alwaysShow) {
           route = onlyOneShowingChild
         }
-
         const data = {
-          path: path.resolve(basePath, route.path),
+          path: path.resolve(basePath, route.path), // path.resolve() 该方法将一些的 路径/路径段 解析为绝对路径
           title: route.meta && route.meta.title
         }
 
         // recursive child routes
         if (route.children) {
-          data.children = this.generateRoutes(route.children, data.path)
+          data.children = this.generateRoutes(route.children, data.path)// 解析子路由路径/路径段为绝对路径
         }
         res.push(data)
       }
       return res
     },
+    /* 路由数组扁平化 */
     generateArr(routes) {
       let data = []
       routes.forEach(route => {
@@ -172,6 +173,7 @@ export default {
         })
         .catch(err => { console.error(err) })
     },
+    /* 生成tree数据 */
     generateTree(routes, basePath = '/', checkedKeys) {
       const res = []
 
@@ -189,6 +191,7 @@ export default {
       }
       return res
     },
+    /* 确认 */
     async confirmRole() {
       const isEdit = this.dialogType === 'edit'
 
@@ -226,8 +229,9 @@ export default {
     onlyOneShowingChild(children = [], parent) {
       let onlyOneChild = null
       const showingChildren = children.filter(item => !item.hidden)
-
+      
       // When there is only one child route, the child route is displayed by default
+      // 当只有一个子路线时，默认情况下会显示子路线
       if (showingChildren.length === 1) {
         onlyOneChild = showingChildren[0]
         onlyOneChild.path = path.resolve(parent.path, onlyOneChild.path)
@@ -235,6 +239,7 @@ export default {
       }
 
       // Show parent if there are no child route to display
+      // 如果没有要显示的子路线，则显示父路线
       if (showingChildren.length === 0) {
         onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return onlyOneChild
