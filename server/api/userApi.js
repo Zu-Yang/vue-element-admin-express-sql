@@ -123,11 +123,9 @@ router.post('/login', (req, res) => {
     return res.send({ msg: "请求参数有误，缺少用户信息", code: 401 })
   }
 })
-
 /* 注销 */
 router.post('/logout', (req, res) => {
   return res.send({ code: 200, msg: "注销" })
 })
-
 module.exports = router;
 

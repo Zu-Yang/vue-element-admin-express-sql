@@ -49,17 +49,17 @@ const mutations = {
 const actions = {
   // change roles
   async changeRoles({ commit, dispatch }, roles) {
-    // const token = roles + '-token'
-    // commit('SET_TOKEN', token)
-    // setToken(token)
-    commit('SET_ROLES', [roles])
+    const token = roles + '-token'
+
+    commit('SET_TOKEN', token)
+    setToken(token)
     resetRouter()
 
-    // const userInfo = await dispatch('getInfo')
+    const userInfo = await dispatch('getInfo')
 
     // 没有root的情况 vuex 就会默认拼接当前 module：user作为key 去查找对应的方法
     //  root: true，开通跨 module 调用权限。解决此类型错误：unknown local action type: generateRoutes, global type: user/generateRoutes 
-    const accessibleRoutes = await dispatch('permission/generateRoutes', [roles], { root: true })
+    const accessibleRoutes = await dispatch('permission/generateRoutes', userInfo.roles, { root: true })
 
     router.addRoutes(accessibleRoutes)
   },
@@ -68,8 +68,8 @@ const actions = {
   // login({ commit }, userInfo) {
   //   const { username, password } = userInfo
   //   return new Promise((resolve, reject) => {
-  //     login({ username: username.trim(), password: password }).then(res => {
-  //       const { data } = res
+  //     login({ username: username.trim(), password: password }).then(response => {
+  //       const { data } = response
   //       commit('SET_TOKEN', data.token)
   //       setToken(data.token)
   //       resolve()
@@ -131,8 +131,8 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getUserInfo(state.token).then(res => {
-        const { data } = res
+      getUserInfo(state.token).then(response => {
+        const { data } = response
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
@@ -145,7 +145,6 @@ const actions = {
         commit('SET_ROLES', JSON.parse(roles))
 
         resolve(data)
-
       }).catch(error => {
         reject(error)
       })

@@ -40,23 +40,23 @@ router.beforeEach(async (to, from, next) => {
           const accessibleRoutes = await store.dispatch('permission/generateRoutes', JSON.parse(roles))
           // 动态添加可访问路由
           router.addRoutes(accessibleRoutes)
-          // hack方法 确保addRoutes已完成,设置 replace:true，这样导航就不会留下历史记录
+          // hack方法 确保addRoutes已完成 , /设置replace:true，这样导航就不会留下历史记录
           next({ ...to, replace: true })
         } catch (error) {
-          // Message({
-          //   type: 'error',
-          //   message: error || 'Has Error'
-          // })
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')
+          Message({
+            type: 'error',
+            message: error || 'Has Error'
+          })
           next(`/login?redirect=${to.path}`)
           NProgress.done()
-          throw error
         }
       }
     }
   } else {
     /* has no token*/
+
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()

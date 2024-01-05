@@ -1,7 +1,7 @@
 # vue-element-admin-express-sql
 
-> this is a vue+element+admin+express+sql project
-> 当前仅使用 express+sql 实现了登录注册功能 其余数据还是通过 mockjs 模拟获取
+> this is a vue+element+admin+express+sql project。
+> 当前仅使用 express+sql 实现了登录注册功能 其余数据还是通过 mockjs 模拟获取。
 
 ## 模板使用 - vue-element-admin
 
@@ -42,9 +42,6 @@ npm run dev
 ### 找到 server/mySql/db.js 目录，修改数据库配置
 
 ```bash
-# 全局安装nodemon
-npm install nodemon -g
-
 # 进入本地服务器目录
 cd vue-element-admin-express-sql/server
 
