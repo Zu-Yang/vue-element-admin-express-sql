@@ -48,23 +48,28 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    console.log('相应拦截', response);
+    // console.log('相应拦截', response);
     const res = response.data
 
     // if the custom code is not 200 and 0, it is judged as an error.
     if (res.code !== 200 && res.code !== 0) {
       //  401 无效的token
+
       if (res.code === 401) {
-        // to re-login
-        MessageBox.confirm('身份验证失败', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/logout').then(() => {
-            location.reload()
-          })
+        Message({
+          message: res.msg || 'Error',
+          type: 'error',
         })
+        // to re-login
+        // MessageBox.confirm('身份验证失败', {
+        //   confirmButtonText: '重新登录',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // }).then(() => {
+        //   store.dispatch('user/logout').then(() => {
+        //     // location.reload()
+        //   })
+        // })
         return
       }
       Message({
