@@ -1,8 +1,8 @@
-/*** 使用 jsonwebtoken 生成token S ***/
+/*** Express中的JWT使用 S ***/
 
 const jwt = require('jsonwebtoken'); //生成JWT
 const SECRET_KEY = 'abcd'; // 定义secret密钥
-const expiresIn = { expiresIn: "24h" } // 设置token过期时间
+const expiresIn = { expiresIn: "60s" } // 设置token过期时间
 
 /* 生成token */
 const createToken = function (userInfo) {
@@ -15,7 +15,7 @@ const createToken = function (userInfo) {
   }
 }
 
-/*** 使用 jsonwebtoken 生成token E ***/
+/*** Express中的JWT使用 E ***/
 
 
 
