@@ -13,6 +13,7 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import '@/styles/v-bubbleButton.css' // 气泡按钮样式
 
 // cnpm i default-passive-events --save 解决在vue项目中解决Chrome控制台non-passive event listener输出问题:[Violation] Added non-passive event listener to a scroll-blocking <某些> 事件. Consider marking event handler as 'passive' to make the page more responsive. See <URL> 
 // import 'default-passive-events' // 引发错误 codemirror.js:609 Unable to preventDefault inside passive event listener invocation.
@@ -36,6 +37,12 @@ if (process.env.NODE_ENV === 'production') {
 // Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 Vue.use(ElementUI)
+
+/* 自定义指令 */
+import directives from './utils/directives/index'
+Vue.use(directives)
+
+
 
 Vue.config.productionTip = false
 

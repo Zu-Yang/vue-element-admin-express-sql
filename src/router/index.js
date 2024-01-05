@@ -285,7 +285,7 @@ export const constantRoutes = [
     children: [{
       path: 'drag-transition',
       name: 'DragTransition',
-      component: () => import('@/views/components-demo/drag-example/drag-transition'),
+      component: () => import('@/views/components-demo/drag-examples/drag-transition'),
       meta: {
         title: 'transition 拖拽',
       },
@@ -293,7 +293,7 @@ export const constantRoutes = [
     {
       path: 'drag-multiple-lists',
       name: 'DragMultipleLists',
-      component: () => import('@/views/components-demo/drag-example/drag-multiple-lists'),
+      component: () => import('@/views/components-demo/drag-examples/drag-multiple-lists'),
       meta: {
         title: 'lists 拖拽',
       },
@@ -301,9 +301,33 @@ export const constantRoutes = [
     {
       path: 'drag-table',
       name: 'DragTable',
-      component: () => import('@/views/components-demo/drag-example/drag-table'),
+      component: () => import('@/views/components-demo/drag-examples/drag-table'),
       meta: {
         title: 'table 拖拽',
+      },
+    },
+    {
+      path: 'mouse-direction-mask',
+      name: 'MouseDirectionMask',
+      component: () => import('@/views/components-demo/mouse-examples/mouse-direction-mask'),
+      meta: {
+        title: '鼠标方向遮罩效果',
+      },
+    },
+    {
+      path: 'mouse-flashlight',
+      name: 'MouseFlashlight',
+      component: () => import('@/views/components-demo/mouse-examples/mouse-flashlight'),
+      meta: {
+        title: '鼠标手电筒效果',
+      },
+    },
+    {
+      path: 'underline-effect',
+      name: 'underlineEffect',
+      component: () => import('@/views/components-demo/underline-effect'),
+      meta: {
+        title: '下划线效果',
       },
     }
     ]
@@ -316,6 +340,33 @@ export const constantRoutes = [
       meta: {
         title: '外链',
         icon: 'link'
+      }
+    }]
+  },
+  {
+    path: '/game-demo',
+    redirect: '/game-demo/clappy-bird',
+    component: Layout,
+    children: [{
+      path: 'clappy-bird',
+      name: 'ClappyBird',
+      component: () => import('@/views/game-demo/clappy-bird'),
+      meta: {
+        title: 'geme example',
+        icon: 'list'
+      }
+    }]
+  },
+  {
+    path: '/test',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'test',
+      component: () => import('@/views/test/index'),
+      meta: {
+        title: 'issue',
+        icon: 'form'
       }
     }]
   }
@@ -358,8 +409,8 @@ export const asyncRoutes = [
       },
       {
         path: 'editor-page',
-        component: () => import('@/views/permission/EditorPpage'),
-        name: 'EditorPpage',
+        component: () => import('@/views/permission/EditorPage'),
+        name: 'EditorPage',
         meta: {
           title: 'editor-page',
           roles: ['editor'] // editor 角色才能看见此页面
@@ -398,9 +449,16 @@ export const asyncRoutes = [
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({
-    y: 0
-  }),
+  scrollBehavior: (to, form) => {
+    const x = window.scrollX;
+    const y = window.scrollY;
+    form.meta.savedPosition = { x: x, y: y }
+    if (to.meta.savedPosition) {
+      return (to.meta.savedPosition)
+    } else {
+      return ({ x: 0, y: 0 })
+    }
+  },
   routes: constantRoutes
 })
 

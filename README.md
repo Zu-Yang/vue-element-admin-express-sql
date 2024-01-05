@@ -1,14 +1,17 @@
 # vue-element-admin-express-sql
 
-## 模板使用 - [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
+> this is a vue+element+admin+express+sql project
+> 当前仅使用 express+sql 实现了登录注册功能 其余数据还是通过 mockjs 模拟获取
+
+## 模板使用 - vue-element-admin
+
+[模板仓库](https://github.com/PanJiaChen/vue-element-admin)
 
 [模板线上地址](http://panjiachen.github.io/vue-admin-template)
 
 [模板国内访问](https://panjiachen.gitee.io/vue-admin-template)
 
 [模板中文文档](https://mvvcc.com/vue-element-admin-site/zh/)
-
-> this is a vue+element+admin+express+sql project
 
 ## Build Setup
 
@@ -17,7 +20,7 @@
 git clone https://github.com/Zu-Yang/vue-element-admin-express-sql.git
 
 # 进入项目目录
-cd vue-admin-template
+cd vue-element-admin-express-sql
 
 # 安装依赖
 npm install
@@ -33,12 +36,15 @@ npm run dev
 
 ## Server
 
-### 创建并且配置好数据库后
+### 下载 navicat 创建并且配置好数据库
 ![数据库截图](./server/mySql/img-sql.png)
 
 ### 找到 server/mySql/db.js 目录，修改数据库配置
 
 ```bash
+# 全局安装nodemon
+npm install nodemon -g
+
 # 进入本地服务器目录
 cd vue-element-admin-express-sql/server
 

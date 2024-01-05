@@ -251,7 +251,7 @@ const constantRoutes = [
     children: [{
       path: 'drag-transition',
       name: 'DragTransition',
-      component: 'views/components-demo/drag-example/drag-transition',
+      component: 'views/components-demo/drag-examples/drag-transition',
       meta: {
         title: 'transition 拖拽',
       },
@@ -259,7 +259,7 @@ const constantRoutes = [
     {
       path: 'drag-multiple-lists',
       name: 'DragMultipleLists',
-      component: 'views/components-demo/drag-example/drag-multiple-lists',
+      component: 'views/components-demo/drag-examples/drag-multiple-lists',
       meta: {
         title: 'lists 拖拽',
       },
@@ -267,7 +267,7 @@ const constantRoutes = [
     {
       path: 'drag-table',
       name: 'DragTable',
-      component: 'views/components-demo/drag-example/drag-table',
+      component: 'views/components-demo/drag-examples/drag-table',
       meta: {
         title: 'table 拖拽',
       },
@@ -320,8 +320,8 @@ const asyncRoutes = [
       },
       {
         path: 'editor-page',
-        component: 'views/permission/EditorPpage',
-        name: 'EditorPpage',
+        component: 'views/permission/EditorPage',
+        name: 'EditorPage',
         meta: {
           title: 'editor-page',
           roles: ['editor'] // editor 角色才能看见此页面

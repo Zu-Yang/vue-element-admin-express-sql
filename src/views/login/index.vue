@@ -32,14 +32,13 @@
 
       <div class="tips">
         <div>
-          admin：
-          <span>userName：admin</span>，
-          <span> password：admin</span>
+          root：userName：root，password：root
         </div>
         <div>
-          editor：
-          <span>userName：editor</span>，
-          <span> password：editor</span>
+          admin：userName：admin，password：admin
+        </div>
+        <div>
+          editor：userName：editor，password：editor
         </div>
         <span style="float: right;"><el-link type="primary" @click="handleChange">注册</el-link></span>
       </div>
@@ -119,8 +118,8 @@ export default {
       isLogin: true,
       loading: false,
       loginForm: {
-        userName: '5555',
-        password: '55555'
+        userName: 'admin',
+        password: 'admin'
       },
       registerForm: {
         userName: '',

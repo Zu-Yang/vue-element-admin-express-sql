@@ -1,5 +1,5 @@
 <template>
-  <div class="">此页面没有设置roles权限 任何人都能防问</div>
+  <div class="">此页面没有设置roles权限 任何角色都能防问</div>
 </template>
 
 <script>
