@@ -32,7 +32,7 @@ const generateRSAKeyPair = () => {
   return { publicKey, privateKey };
 };
 /**
-* 使用公钥进行加密，加密出错会抛出异常
+* 使用公钥进行 RSA 加密，加密出错会抛出异常
 * @param {any} data 需要加密的数据，会使用 JSON.stringify 序列化
 * @param {string} publicKey
 * @return {string} 加密后的密文
@@ -45,7 +45,7 @@ const encryptRSA = (data, publicKey = PUBLICK_KEY) => {
 };
 
 /**
-* 对密文进行 RSA 解密。如果解密失败，则抛出异常
+* 使用私钥进行 RSA 解密，如果解密失败，则抛出异常
 * @param {string} secretText 密文
 * @param {string} privateKey 私钥
 * @return {String} 解密后的明文，会使用 JSON.parse 反序列化

@@ -14,7 +14,7 @@ const { decryptRSA } = require("../utils/node-rsa"); // 工具函数
 /* 获取用户信息 */
 router.get('/getUserInfo', (req, res) => {
   // const { token } = req.query // 用户传递的token
-  const { userName } = req.user // 获取已经被解析的token内容
+  const { userName } = req.user // 获取expressJWT中间件解析的token内容
   if (userName) {
     const sqlMap = {
       colName: '*', // 列名称(*代表全部字段)

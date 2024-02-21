@@ -27,11 +27,12 @@ const userApi = require('./api/userApi')// 内涵 express.Router()
 
 // 第三方的中间件
 // 注册expressJWT全局中间件 用于解析token，可参考文章：https://www.cnblogs.com/zkqiang/p/11810203.html 。
-const SECRET_KEY = 'abcd'; // 定义secret密钥
+const SECRET_KEY = 'abcd'; // 定义secret私钥(公钥加密算法使用公钥对数据进行加密，只有使用对应的私钥才能解密)
 const whiteList = ['/api/user/userNameCheck', '/api/user/register', '/api/user/login', '/api/user/logout'] // path 白名单字段，没有token也放行，可设置一个正则表达式
+
 app.use(expressJWT({
-  secret: SECRET_KEY,
-  algorithms: ["HS256"],// HS256 使用同一个「secret_key」进行签名与验证  RS256 是使用 RSA 私钥进行签名，使用 RSA 公钥进行验证。
+  secret: SECRET_KEY,// 解密用私钥
+  algorithms: ["HS256"],// HS256:使用同一个secret进行签名与验证; RS256:使用不同secret进行签名与验证 。
   requestProperty: 'user'// 自定义解析内容返回路径 req.user
 }).unless({
   path: whiteList
