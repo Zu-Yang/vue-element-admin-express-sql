@@ -6,7 +6,7 @@ import { getToken } from './auth'
 // create an axios instance
 const service = axios.create({
   // baseURL: 'http://localhost:3000', // localhost服务器端接口地址
-  baseURL: 'http://10.4.32.45:3000', //  备注：如果是通过ip访问那就需要改成本机的ip地址
+  baseURL: 'http://10.4.32.45:3300', //  备注：如果是通过ip访问那就需要改成本机的ip地址
   // baseURL: process.env.VUE_APP_BASE_API, // url = baseUrl + requestUrl
   withCredentials: false, // send cookies when cross-domain requests
   timeout: 5000, // request timeout

@@ -22,12 +22,12 @@ app.use(cors()) // 在调用 express.Router() 之前调用 app.use(cors()) 配�
 // 用了这俩之后，可以使用 req.body 获取post请求携带的参数
 app.use(express.json()) // 4.16.0+ 版本中可用 express.json()解析器 如果没有消息体解析那么返回的就是一个空对象{}
 app.use(express.urlencoded({ extended: false })) // // 4.16.0+ 版本中可用 express.urlencoded()解析器 设置完毕之后，会在req对象上面新增一个req.body的一个对象 如果没有消息体解析那么返回的就是一个空对象{}
-const { expressjwt: expressJWT } = require('express-jwt'); //解析JWT
+const { expressjwt: expressJWT } = require('express-jwt') //解析JWT
 const userApi = require('./api/userApi')// 内涵 express.Router()
 
 // 第三方的中间件
 // 注册expressJWT全局中间件 用于解析token，可参考文章：https://www.cnblogs.com/zkqiang/p/11810203.html 。
-const SECRET_KEY = 'abcd'; // 定义secret私钥(公钥加密算法使用公钥对数据进行加密，只有使用对应的私钥才能解密)
+const SECRET_KEY = 'abcd' // 定义secret私钥(公钥加密算法使用公钥对数据进行加密，只有使用对应的私钥才能解密)
 const whiteList = ['/api/user/userNameCheck', '/api/user/register', '/api/user/login', '/api/user/logout'] // path 白名单字段，没有token也放行，可设置一个正则表达式
 
 app.use(expressJWT({
@@ -42,11 +42,12 @@ app.use(expressJWT({
 app.use(function (err, req, res, next) {
   if (err.name === "UnauthorizedError") {
     /* res.send()向客户端响应处理结果 */
-    res.send({ code: 401, msg: '身份验证失败', })
+    res.send({ code: 401, msg: '身份验证失败或Token失效', })
+  } else {
+    res.send({ code: 500, msg: '未知的错误', })
   }
-  res.send({ code: 500, msg: '未知的错误', })
-  next()
-});
+  // next()
+})
 
 /* 
   了解中间件的5个使用注意事项
@@ -62,6 +63,6 @@ app.use('/api/user', userApi)
 
 
 // 监听端口
-app.listen(3000)
-console.log('success listen at port:3000......')
+app.listen(3300)
+console.log('success listen at port:3300......')
 
